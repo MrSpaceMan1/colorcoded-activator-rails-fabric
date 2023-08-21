@@ -40,11 +40,11 @@ jobs:
       - name: Publish (GitHub)
         uses: Kir-Antipov/mc-publish@v3.2
         with:
-          github-tag: "v1.0.0"
+          github-tag: "v1.0.1"
           github-token: "${{secrets.GHUB_TOKEN}}"
 
           name: "Colorcoded detector rails"
-          version: "1.0.0"
+          version: "1.0.1"
           version-type: release
 
           loaders: fabric
