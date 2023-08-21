@@ -20,21 +20,37 @@ jobs:
     steps:
       - name: checkout repository
         uses: actions/checkout@v3
+
       - name: validate gradle wrapper
         uses: gradle/wrapper-validation-action@v1
+
       - name: setup jdk ${{ matrix.java }}
         uses: actions/setup-java@v3
         with:
           java-version: ${{ matrix.java }}
           distribution: 'microsoft'
+
       - name: make gradle wrapper executable
         if: ${{ runner.os != 'Windows' }}
         run: chmod +x ./gradlew
+
       - name: build
         run: ./gradlew build
-      - name: capture build artifacts
-        if: ${{ runner.os == 'Linux' && matrix.java == '17' }} # Only upload artifacts built from latest java on one OS
-        uses: actions/upload-artifact@v3
+
+      - name: Publish (GitHub)
+        uses: Kir-Antipov/mc-publish@v3.2
         with:
-          name: Artifacts
-          path: build/libs/
+          github-tag: "v1.0.0"
+          github-token: "${{secrets.GHUB_TOKEN}}"
+
+          name: "Colorcoded detector rails"
+          version: "1.0.0"
+          version-type: release
+
+          loaders: fabric
+#      - name: capture build artifacts
+#        if: ${{ runner.os == 'Linux' && matrix.java == '17' }} # Only upload artifacts built from latest java on one OS
+#        uses: actions/upload-artifact@v3
+#        with:
+#          name: Artifacts
+#          path: build/libs/

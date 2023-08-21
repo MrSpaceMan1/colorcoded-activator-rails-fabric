@@ -17,17 +17,10 @@
 	"entrypoints": {
 		"main": [
 			"com.github.mrspaceman1.colorcodedactivatorrails.ExampleMod"
-		],
-		"client": [
-			"com.github.mrspaceman1.colorcodedactivatorrails.ExampleModClient"
 		]
 	},
 	"mixins": [
-		"colorcoded-activator-rails.mixins.json",
-		{
-			"config": "colorcoded-activator-rails.client.mixins.json",
-			"environment": "client"
-		}
+		"colorcoded-activator-rails.mixins.json"
 	],
 	"depends": {
 		"fabricloader": ">=0.14.22",
